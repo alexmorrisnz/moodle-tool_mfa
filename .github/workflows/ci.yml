@@ -128,6 +128,7 @@ jobs:
           git config --global user.email "test@test.com"
           git config --global user.name "Test"
           (cd /home/runner/work/moodle-tool_mfa/moodle-tool_mfa/moodle; git am --whitespace=nowarn < admin/tool/mfa/patch/${{ matrix.core_patch }});
+          git clone https://github.com/catalyst/moodle-local_aws.git local/aws;
 
       - name: Run phplint
         if: matrix.moodle-branch == 'MOODLE_39_STABLE'
