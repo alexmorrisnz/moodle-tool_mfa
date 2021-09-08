@@ -55,7 +55,9 @@ $settings->add(new admin_setting_configselect('factor_sms/gateway',
     get_string('settings:gateway_help', 'factor_sms'),
     'aws_sns', $gateways));
 
-if (empty(get_config('factor_sms', 'gateway'))) return;
+if (empty(get_config('factor_sms', 'gateway'))) {
+    return;
+}
 
 $class = '\factor_sms\local\smsgateway\\' . get_config('factor_sms', 'gateway');
 $gateway = new $class();
