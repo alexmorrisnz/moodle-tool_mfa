@@ -27,6 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 function xmldb_factor_sms_upgrade($oldversion) {
     if ($oldversion < 2021081300) {
         set_config('gateway', 'aws_sns', 'factor_sms');
+        upgrade_plugin_savepoint(true, 2021081300, 'factor', 'sms');
     }
 
     return true;

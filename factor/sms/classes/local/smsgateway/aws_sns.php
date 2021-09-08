@@ -27,8 +27,9 @@ namespace factor_sms\local\smsgateway;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/local/aws/sdk/aws-autoloader.php');
-use Aws\Sns\SnsClient;
+if (file_exists($CFG->dirroot . '/local/aws/version.php')) {
+    require_once($CFG->dirroot . '/local/aws/sdk/aws-autoloader.php');
+}
 
 class aws_sns implements gateway_interface {
 
@@ -54,7 +55,7 @@ class aws_sns implements gateway_interface {
                 'secret' => $config->api_secret
             ];
         }
-        $client = new SnsClient($params);
+        $client = new \Aws\Sns\SnsClient($params);
 
         // Transform the phone number to international standard.
         $phonenumber = \factor_sms\helper::format_number($phonenumber);
