@@ -266,7 +266,9 @@ class factor extends object_factor_base {
      * {@inheritDoc}
      */
     public function is_enabled() {
-        if (empty(get_config('factor_sms', 'gateway'))) return false;
+        if (empty(get_config('factor_sms', 'gateway'))) {
+            return false;
+        }
 
         $class = '\factor_sms\local\smsgateway\\' . get_config('factor_sms', 'gateway');
         $gateway = new $class();
